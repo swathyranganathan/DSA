@@ -1,0 +1,152 @@
+Certainly! Let’s walk through the corrected merge sort process for the array `{8, 5, 9, 1, 6, 7}` including the final merge steps, and include all the values of variables and arrays.
+
+### Merge Sort Walkthrough for `{8, 5, 9, 1, 6, 7}`
+
+#### 1. Initial Call
+
+- **Array:** `{8, 5, 9, 1, 6, 7}`
+- **Initial Call:** `divide(arr, 0, 5)`
+
+#### 2. First Level of Recursion
+
+- **Divide:** `divide(arr, 0, 5)`
+  - **s = 0**, **e = 5**
+  - **mid = (0 + 5) / 2 = 2**
+  - **Recursive Calls:**
+    - `divide(arr, 0, 2)`
+    - `divide(arr, 3, 5)`
+
+#### 3. Second Level of Recursion
+
+##### 3.1. Process Left Half: `divide(arr, 0, 2)`
+
+- **Divide:** `divide(arr, 0, 2)`
+  - **s = 0**, **e = 2**
+  - **mid = (0 + 2) / 2 = 1**
+  - **Recursive Calls:**
+    - `divide(arr, 0, 1)`
+    - `divide(arr, 2, 2)`
+
+##### 3.2. Process Right Half: `divide(arr, 3, 5)`
+
+- **Divide:** `divide(arr, 3, 5)`
+  - **s = 3**, **e = 5**
+  - **mid = (3 + 5) / 2 = 4**
+  - **Recursive Calls:**
+    - `divide(arr, 3, 4)`
+    - `divide(arr, 5, 5)`
+
+#### 4. Third Level of Recursion
+
+##### 4.1. Further Break Down Left Half: `divide(arr, 0, 1)`
+
+- **Divide:** `divide(arr, 0, 1)`
+  - **s = 0**, **e = 1**
+  - **mid = (0 + 1) / 2 = 0**
+  - **Recursive Calls:**
+    - `divide(arr, 0, 0)` (Base case, single element, no further division)
+    - `divide(arr, 1, 1)` (Base case, single element, no further division)
+
+**Merge Call:** `merge(arr, 0, 0, 1)`
+  - **s = 0**, **mid = 0**, **e = 1**
+  - **Temporary Arrays:**
+    - **sarr = [8]** (from `arr[0]`)
+    - **earr = [5]** (from `arr[1]`)
+  - **Merge Process:**
+    - Compare `sarr[0] (8)` with `earr[0] (5)`
+      - **8 > 5**, place `5` in `arr[0]`
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+    - Copy remaining elements:
+      - **sarr[0] (8)** goes into `arr[1]`
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+
+##### 4.2. Process Single Element: `divide(arr, 2, 2)`
+
+- **Divide:** `divide(arr, 2, 2)`
+  - **Base case, single element, no further division**
+  - **Array remains:** `{5, 8, 9, 1, 6, 7}`
+
+**Merge Call:** `merge(arr, 0, 1, 2)`
+  - **s = 0**, **mid = 1**, **e = 2**
+  - **Temporary Arrays:**
+    - **sarr = [5, 8]**
+    - **earr = [9]**
+  - **Merge Process:**
+    - Compare `sarr[0] (5)` with `earr[0] (9)`
+      - **5 <= 9**, place `5` in `arr[0]`
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+    - Compare `sarr[1] (8)` with `earr[0] (9)`
+      - **8 <= 9**, place `8` in `arr[1]`
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+    - Copy remaining elements:
+      - **earr[0] (9)** goes into `arr[2]`
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+
+##### 4.3. Further Break Down Right Half: `divide(arr, 3, 4)`
+
+- **Divide:** `divide(arr, 3, 4)`
+  - **s = 3**, **e = 4**
+  - **mid = (3 + 4) / 2 = 3**
+  - **Recursive Calls:**
+    - `divide(arr, 3, 3)` (Base case, single element, no further division)
+    - `divide(arr, 4, 4)` (Base case, single element, no further division)
+
+**Merge Call:** `merge(arr, 3, 3, 4)`
+  - **s = 3**, **mid = 3**, **e = 4**
+  - **Temporary Arrays:**
+    - **sarr = [1]** (from `arr[3]`)
+    - **earr = [6]** (from `arr[4]`)
+  - **Merge Process:**
+    - Compare `sarr[0] (1)` with `earr[0] (6)`
+      - **1 <= 6**, place `1` in `arr[3]**
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+    - Copy remaining elements:
+      - **earr[0] (6)** goes into `arr[4]`
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+
+##### 4.4. Process Single Element: `divide(arr, 5, 5)`
+
+- **Divide:** `divide(arr, 5, 5)`
+  - **Base case, single element, no further division**
+  - **Array remains:** `{5, 8, 9, 1, 6, 7}`
+
+**Merge Call:** `merge(arr, 5, 5, 5)`
+  - **s = 5**, **mid = 5**, **e = 5**
+  - **Temporary Arrays:**
+    - **sarr = [7]** (from `arr[5]`)
+    - **earr = []** (empty)
+  - **Merge Process:**
+    - Copy remaining elements:
+      - **sarr[0] (7)** goes into `arr[5]`
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+
+### 5. Final Merge Call
+
+**Merge Call:** `merge(arr, 3, 4, 5)`
+  - **s = 3**, **mid = 4**, **e = 5**
+  - **Temporary Arrays:**
+    - **sarr = [1, 6]**
+    - **earr = [7]**
+  - **Merge Process:**
+    - Compare `sarr[0] (1)` with `earr[0] (7)`
+      - **1 <= 7**, place `1` in `arr[3]**
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+    - Compare `sarr[1] (6)` with `earr[0] (7)`
+      - **6 <= 7**, place `6` in `arr[4]**
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+    - Copy remaining elements:
+      - **earr[0] (7)** goes into `arr[5]**
+      - **Array:** `{5, 8, 9, 1, 6, 7}`
+
+**Final Merge Call:** `merge(arr, 0, 2, 5)`
+  - **s = 0**, **mid = 2**, **e = 5**
+  - **Temporary Arrays:**
+    - **sarr = [5, 8, 9]**
+    - **earr = [1, 6, 7]**
+  - **Merge Process:**
+    - Compare `sarr[0] (5)` with `earr[0] (1)`
+      - **5 > 1**, place `1` in `arr[0]`
+      - **Array:** `{1, 8, 9, 1, 6, 7}`
+    - Compare `sarr[0] (5)` with `earr[1] (6)`
+      - **5 <= 6**, place `5` in `arr[1]**
+      - **Array:**
