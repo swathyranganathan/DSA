@@ -47,6 +47,7 @@ class fun{
             shrinkArray();
         }
     }
+
     private void shrinkArray(){
         capacity /= 2;
         arr = java.util.Arrays.copyOf(arr, capacity);
@@ -91,6 +92,7 @@ public class DynamicArray {
                     int pos2=scan.nextInt();
                     list.delete(pos2);
                     break;
+
                 case 5:
                     System.exit(0);
                 default:
